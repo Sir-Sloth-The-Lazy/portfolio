@@ -1,92 +1,100 @@
 import React from "react";
 import { Tooltip } from "react-tooltip";
-import {useRef} from "react";
+import { useRef } from "react";
 import { dockApps } from "#constants";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";    
+import gsap from "gsap";
+import useWindowStore from "#store/window.js";
 
 const Dock = () => {
+  const {  openWindow , closeWindow , windows } = useWindowStore();
   const dockRef = useRef(null);
 
   useGSAP(() => {
     const dock = dockRef.current;
-    if(!dock) return ;
+    if (!dock) return;
 
     const icons = dock.querySelectorAll(".dock-icon");
     const animateIcons = (mouseX) => {
-        const {left} = dock.getBoundingClientRect();
-        icons.forEach((icon) => {
-            const {left : iconleft , width} = icon.getBoundingClientRect();
-            const center = iconleft - left + width / 2 ;
-            const distance = Math.abs(mouseX - center);
-            
-            const intensity = Math.exp(-(distance**3)/20000);
+      const { left } = dock.getBoundingClientRect();
+      icons.forEach((icon) => {
+        const { left: iconleft, width } = icon.getBoundingClientRect();
+        const center = iconleft - left + width / 2;
+        const distance = Math.abs(mouseX - center);
 
-            gsap.to(icon , {
-                scale: 1 + 0.25 * intensity,
-                y: -15* intensity,
-                ease : "power1.out",
-                duration : 0.25
-            })
+        const intensity = Math.exp(-(distance ** 3) / 20000);
 
-
-        })
-    }
+        gsap.to(icon, {
+          scale: 1 + 0.25 * intensity,
+          y: -15 * intensity,
+          ease: "power1.out",
+          duration: 0.25,
+        });
+      });
+    };
 
     const handleMouseMove = (e) => {
-        const {left} = dock.getBoundingClientRect();
-        const mouseX = e.clientX - left;
-        animateIcons(mouseX);
-    }
+      const { left } = dock.getBoundingClientRect();
+      const mouseX = e.clientX - left;
+      animateIcons(mouseX);
+    };
 
-    const resetIcons =() => 
-        icons.forEach((icon) => {
-            gsap.to(icon , {
-                scale : 1,
-                y : 0,
-                ease : "power1.out",
-                duration : 0.3
-            })
-        })
-    
-    dock.addEventListener("mousemove" , handleMouseMove);
-    dock.addEventListener("mouseleave" , resetIcons)
+    const resetIcons = () =>
+      icons.forEach((icon) => {
+        gsap.to(icon, {
+          scale: 1,
+          y: 0,
+          ease: "power1.out",
+          duration: 0.3,
+        });
+      });
+
+    dock.addEventListener("mousemove", handleMouseMove);
+    dock.addEventListener("mouseleave", resetIcons);
 
     return () => {
-        dock.removeEventListener("mousemove" , handleMouseMove)
-        dock.removeEventListener("mouseleave" , resetIcons)
+      dock.removeEventListener("mousemove", handleMouseMove);
+      dock.removeEventListener("mouseleave", resetIcons);
+    };
+  }, []);
 
-    }
-  } , [])
-
-  const toggleApp = (app) => {};
-  return <section id="dock">
-    <div ref={dockRef} className="dock-container">
-        {dockApps.map(({id , name , icon , canOpen}) =>(
-            <div key={id} className="relative flex justify-center items-center">
-                <button
-                type = "button"
-                className="dock-icon"
-                aria-label={name}
-                data-tooltip-id="dock-tooltip"
-                data-tooltip-content={name}
-                data-tooltip-delay-show={150}
-                disabled={!canOpen}
-                onClick={() => toggleApp({id,canOpen})}
-                >
-                <img
+  const toggleApp = (app) => {
+    if(!app.canOpen)
+        return ;
+    const window = windows[app.id];
+    if(window.isOpen)
+        closeWindow(app.id);
+    else
+        openWindow(app.id);
+  };
+  return (
+    <section id="dock">
+      <div ref={dockRef} className="dock-container">
+        {dockApps.map(({ id, name, icon, canOpen }) => (
+          <div key={id} className="relative flex justify-center items-center">
+            <button
+              type="button"
+              className="dock-icon"
+              aria-label={name}
+              data-tooltip-id="dock-tooltip"
+              data-tooltip-content={name}
+              data-tooltip-delay-show={150}
+              disabled={!canOpen}
+              onClick={() => toggleApp({ id, canOpen })}
+            >
+              <img
                 src={`/images/${icon}`}
                 alt={name}
-                loading = "lazy"
-                className = {canOpen ? "" : "opacity-50"}
-                />
-                </button>
-            </div>
-
+                loading="lazy"
+                className={canOpen ? "" : "opacity-50"}
+              />
+            </button>
+          </div>
         ))}
-        <Tooltip className="tooltip" id="dock-tooltip" place="top"/>
-    </div>
-  </section>;
+        <Tooltip className="tooltip" id="dock-tooltip" place="top" />
+      </div>
+    </section>
+  );
 };
 
 export default Dock;
