@@ -6,6 +6,11 @@ import { Terminal } from '#windows';
 gsap.registerPlugin(Draggable);
 
 
+/**
+ * Render the application's main layout containing navigation, welcome, dock, and terminal.
+ *
+ * @returns {JSX.Element} The root JSX element for the app's main content.
+ */
 function App() {
   return (
     <main>
