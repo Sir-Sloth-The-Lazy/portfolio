@@ -1,245 +1,156 @@
-# Portfolio Website - macOS-Inspired Interface
+<div align="center">
+  <img width="100%" alt="macOS Portfolio Banner" src="https://github.com/user-attachments/assets/f0d14674-84e6-45ca-90db-01132af62ec9" />
 
-A modern, interactive portfolio website inspired by macOS, featuring draggable windows, an animated dock, and a fully functional terminal. Built with React, Vite, and GSAP animations.
+  <h1> macOS Portfolio</h1>
 
-<img width="2940" height="1676" alt="image" src="https://github.com/user-attachments/assets/f0d14674-84e6-45ca-90db-01132af62ec9" />
+  <p>
+    <strong>A stunning, interactive portfolio website inspired by macOS.</strong><br>
+    Featuring draggable windows, a dynamic dock, and a fully functional terminal.
+  </p>
 
+  <p>
+    <a href="#-features">Features</a> •
+    <a href="#-tech-stack">Tech Stack</a> •
+    <a href="#-getting-started">Getting Started</a> •
+    <a href="#-project-structure">Structure</a>
+  </p>
+
+  <div align="center">
+    <img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+    <img src="https://img.shields.io/badge/Vite_7-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS_4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" alt="GSAP" />
+    <img src="https://img.shields.io/badge/Zustand-443E38?style=for-the-badge&logo=react&logoColor=white" alt="Zustand" />
+  </div>
+</div>
+
+<br />
 
 ## ✨ Features
 
-### 🖥️ macOS-Inspired Interface
-- **Draggable Windows**: All windows can be dragged around the screen using GSAP Draggable
-- **Window Management**: Full window controls (close, minimize, maximize) with z-index management
-- **Animated Dock**: Interactive dock with hover effects and smooth animations
-- **Responsive Design**: Modern, clean UI with Tailwind CSS
+Experience a web-based operating system built for the modern web.
 
-### 💻 Interactive Terminal
-A fully functional terminal emulator with the following commands:
+### 🖥️ Desktop Environment
 
-- `ls` - List files in the current directory
-- `touch <file>` - Create a new file
-- `cat <file>` - Display file contents or download PDFs
-  - `cat techStack.txt` - View tech stack information
-  - `cat resume.pdf` - Download resume PDF
-- `open <app>` - Open applications
-  - Available apps: `finder`, `safari`, `photos`, `contact`
-  - Aliases: `portfolio` (finder), `articles` (safari), `gallery` (photos), `skills` (terminal)
-- `clear` - Clear terminal history
-- `help` - Show available commands
+- **Draggable Windows**: Smooth, physics-based window dragging using GSAP.
+- **Window Management**: Minimize, maximize, and close windows with proper z-index layering.
+- **Interactive Dock**: A fully animated dock with magnification effects.
+- **Responsive Design**: Adapts beautifully to different screen sizes.
 
-**Example terminal usage:**
-```bash
-$ ls
-techStack.txt  resume.pdf
+### 💻 Terminal Emulator
 
-$ cat techStack.txt
-# Shows tech stack categories and items
+A powerful command-line interface for power users.
 
-$ cat resume.pdf
-Downloading resume.pdf...
-
-$ open safari
-Opening safari...
-```
+- **File System**: Navigate a virtual file system with `ls`, `cd`, and `cat`.
+- **Commands**:
+  - `open <app>`: Launch applications (e.g., `open safari`).
+  - `cat resume.pdf`: Instantly download the resume.
+  - `help`: Discover all available commands.
+- **History**: Cycle through command history with Up/Down arrows.
 
 ### 📱 Applications
 
-1. **Portfolio/Finder** - Browse projects and portfolio content
-2. **Articles/Safari** - View blog posts and articles
-3. **Gallery/Photos** - Image gallery with categorized photos
-4. **Contact** - Contact information and social links
-5. **Terminal/Skills** - Interactive terminal showcasing technical skills
-
-## 🛠️ Tech Stack
-
-### Core
-- **React 19** - UI library
-- **Vite 7** - Build tool and dev server
-- **Tailwind CSS 4** - Utility-first CSS framework
-
-### State Management
-- **Zustand** - Lightweight state management
-- **Immer** - Immutable state updates
-
-### Animation
-- **GSAP** - Professional animation library
-- **@gsap/react** - React hooks for GSAP
-- **GSAP Draggable** - Drag and drop functionality
-
-### UI Components
-- **Lucide React** - Icon library
-- **React Tooltip** - Tooltip components
-- **clsx** & **tailwind-merge** - Conditional class utilities
-
-## 📁 Project Structure
-
-```
-portfolio/
-├── public/
-│   ├── files/
-│   │   └── resume.pdf          # Resume file
-│   ├── icons/                   # SVG icons
-│   ├── images/                  # Image assets
-│   └── macbook.png             # Preview image
-├── src/
-│   ├── components/
-│   │   ├── Dock.jsx            # Animated dock component
-│   │   ├── Navbar.jsx          # Top navigation bar
-│   │   ├── Welcome.jsx         # Welcome screen
-│   │   └── windowControls.jsx  # Window control buttons
-│   ├── constants/
-│   │   └── index.js            # App configuration and data
-│   ├── hoc/
-│   │   └── windowWrapper.jsx   # Higher-order component for windows
-│   ├── store/
-│   │   └── window.js           # Zustand store for window management
-│   ├── windows/
-│   │   ├── Terminal.jsx        # Terminal application
-│   │   ├── safari.jsx          # Safari/Articles application
-│   │   └── index.js            # Window exports
-│   ├── App.jsx                 # Main app component
-│   ├── main.jsx                # Application entry point
-│   └── index.css               # Global styles
-├── package.json
-├── vite.config.js              # Vite configuration with path aliases
-└── README.md
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v18 or higher recommended)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd portfolio
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser and navigate to `http://localhost:5173`
-
-### Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## 🎨 Customization
-
-### Adding New Windows
-
-1. Create a new window component in `src/windows/`
-2. Wrap it with `windowWrapper` HOC:
-```jsx
-import windowWrapper from "#hoc/windowWrapper";
-
-const MyWindow = () => {
-  // Your window content
-};
-
-export default windowWrapper(MyWindow, "myWindow");
-```
-
-3. Add window config in `src/constants/index.js`:
-```js
-const WINDOW_CONFIG = {
-  // ... existing windows
-  myWindow: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-};
-```
-
-4. Add to dock apps in `src/constants/index.js`:
-```js
-const dockApps = [
-  // ... existing apps
-  {
-    id: "myWindow",
-    name: "My App",
-    icon: "myicon.png",
-    canOpen: true,
-  },
-];
-```
-
-### Adding Terminal Commands
-
-Edit `src/windows/Terminal.jsx` and add a new case in the `executeCommand` function:
-
-```jsx
-case "mycommand":
-  // Command logic here
-  return "Command output";
-```
-
-### Styling
-
-The project uses Tailwind CSS. Customize styles in:
-- `src/index.css` - Global styles
-- Component files - Inline Tailwind classes
-- `tailwind.config.js` (if created) - Tailwind configuration
-
-## 🔧 Path Aliases
-
-The project uses path aliases for cleaner imports:
-
-- `#components` → `src/components`
-- `#constants` → `src/constants`
-- `#store` → `src/store`
-- `#hoc` → `src/hoc`
-- `#windows` → `src/windows`
-
-## 📝 Features in Detail
-
-### Window Management
-- Windows are managed through Zustand store
-- Each window maintains its own state (open/closed, z-index, data)
-- Windows can be dragged, focused, and controlled independently
-- Window wrapper provides consistent behavior across all windows
-
-### Terminal Features
-- Command history with arrow key navigation
-- File system simulation with virtual files
-- PDF download functionality
-- Application launcher via `open` command
-- Real-time command execution
-
-### Dock Animation
-- Smooth hover effects on dock icons
-- Icons scale and move based on mouse proximity
-- Visual indicators for open applications
-- Tooltips on hover
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is private and proprietary.
-
-## 👨‍💻 Author
-
-**Jeevant Prakhar Singh**
-
-- GitHub: [@Sir-Sloth-The-Lazy](https://github.com/Sir-Sloth-The-Lazy)
-- LinkedIn: [jeevantpsingh](https://www.linkedin.com/in/jeevantpsingh)
-- Twitter: [@JeevantSin61236](https://x.com/JeevantSin61236)
+| App          | Description                        | Status         |
+| :----------- | :--------------------------------- | :------------- |
+| **Terminal** | Interactive command line interface | ✅ Ready       |
+| **Safari**   | Read articles and browse content   | ✅ Ready       |
+| **Finder**   | Browse projects and files          | 🚧 In Progress |
+| **Photos**   | Image gallery                      | 🚧 In Progress |
+| **Contact**  | Get in touch                       | 🚧 In Progress |
 
 ---
 
-Built with ❤️ using React, Vite, and GSAP
+## 🛠️ Tech Stack
+
+Built with cutting-edge frontend technologies for maximum performance and interactivity.
+
+| Category      | Technologies                                                                                                                                                                               |
+| :------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Core**      | ![React](https://img.shields.io/badge/-React_19-black?style=flat-square&logo=react) ![Vite](https://img.shields.io/badge/-Vite-black?style=flat-square&logo=vite)                          |
+| **Styling**   | ![Tailwind](https://img.shields.io/badge/-Tailwind_CSS-black?style=flat-square&logo=tailwindcss) ![Lucide](https://img.shields.io/badge/-Lucide_Icons-black?style=flat-square&logo=lucide) |
+| **State**     | ![Zustand](https://img.shields.io/badge/-Zustand-black?style=flat-square) ![Immer](https://img.shields.io/badge/-Immer-black?style=flat-square)                                            |
+| **Animation** | ![GSAP](https://img.shields.io/badge/-GSAP-black?style=flat-square&logo=greensock) ![Framer Motion](https://img.shields.io/badge/-Draggable-black?style=flat-square)                       |
+
+---
+
+## 📁 Project Structure
+
+```bash
+portfolio/
+├── public/             # Static assets (icons, images, resume)
+├── src/
+│   ├── components/     # UI Components (Dock, Navbar, etc.)
+│   ├── constants/      # App configuration & data
+│   ├── hoc/            # Higher-Order Components (WindowWrapper)
+│   ├── store/          # Zustand state management
+│   ├── windows/        # Application windows (Terminal, Safari)
+│   ├── App.jsx         # Main layout
+│   └── main.jsx        # Entry point
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to get the OS running on your local machine.
+
+### Prerequisites
+
+- **Node.js** (v18+)
+- **npm** or **yarn**
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone <repository-url>
+   cd portfolio
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in browser**
+   Visit `http://localhost:5173` to see the magic! ✨
+
+---
+
+## 🎨 Customization
+
+### Adding a New App
+
+1. Create your component in `src/windows/`.
+2. Wrap it with `windowWrapper` HOC.
+3. Register it in `src/constants/index.js` (add to `WINDOW_CONFIG` and `dockApps`).
+4. Import and render it in `App.jsx`.
+
+---
+
+## 👨‍💻 Author
+
+<div align="center">
+
+**Jeevant Prakhar Singh**
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Sir-Sloth-The-Lazy)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jeevantpsingh)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/JeevantSin61236)
+
+</div>
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ using React, Vite, and GSAP</sub>
+</div>
