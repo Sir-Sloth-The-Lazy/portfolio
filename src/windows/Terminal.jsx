@@ -67,7 +67,7 @@ const Terminal = () => {
                     .filter((file) => files[file])
                     .join("  ");
 
-            case "touch":
+            case "touch": {
                 if (args.length === 0) {
                     return "touch: missing file operand";
                 }
@@ -78,8 +78,9 @@ const Terminal = () => {
                 }
                 setFiles((prev) => ({ ...prev, [fileName]: true }));
                 return "";
+            }
 
-            case "cat":
+            case "cat": {
                 if (args.length === 0) {
                     return "cat: missing file operand";
                 }
@@ -95,6 +96,7 @@ const Terminal = () => {
                     return `cat: ${fileToRead}: No such file or directory`;
                 }
                 return `cat: ${fileToRead}: File exists but is empty`;
+            }
 
             case "help":
                 return `Available commands:
@@ -110,7 +112,7 @@ Then: cat techStack.txt
 Or: cat resume.pdf
 Or: open safari`;
 
-            case "open":
+            case "open": {
                 if (args.length === 0) {
                     return "open: missing application name\nAvailable apps: finder, safari, photos, contact, terminal, resume";
                 }
@@ -121,6 +123,7 @@ Or: open safari`;
                 }
                 openWindow(windowId);
                 return `Opening ${windowId}...`;
+            }
 
             case "clear":
                 setCommandHistory([]);
