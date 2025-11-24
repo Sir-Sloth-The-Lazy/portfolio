@@ -134,33 +134,86 @@ body {
       }
     }
 
-    .blog {
-      @apply bg-white p-10 max-w-3xl mx-auto;
+    .blog-medium {
+      @apply bg-white overflow-y-auto;
+      max-height: calc(100vh - 200px);
 
-      h2 {
-        @apply text-xl font-bold text-pink-600 mb-10;
-      }
+      .blog-header {
+        @apply px-12 pt-12 pb-8 border-b border-gray-100;
 
-      .blog-post {
-        @apply grid grid-cols-12 space-x-5;
-
-        img {
-          @apply size-full rounded-md object-cover;
+        h1 {
+          @apply text-4xl font-bold text-gray-900 mb-2;
+          font-family: var(--font-georama);
         }
 
-        .content {
-          @apply col-span-10 space-y-3;
+        .blog-subtitle {
+          @apply text-base text-gray-600;
+          font-family: var(--font-georama);
+        }
+      }
 
-          p {
-            @apply text-xs text-gray-500;
+      .blog-posts-container {
+        @apply px-12 py-8 space-y-8;
+      }
+
+      .blog-card {
+        @apply flex items-center gap-8 pb-8 border-b border-gray-100 last:border-b-0;
+        @apply hover:opacity-90 transition-opacity cursor-pointer;
+
+        &:hover {
+          .blog-title a {
+            @apply text-gray-900;
+          }
+        }
+
+        .blog-card-content {
+          @apply flex-1 min-w-0;
+        }
+
+        .blog-meta {
+          @apply flex items-center gap-2 text-sm text-gray-500 mb-3;
+          font-family: var(--font-georama);
+
+          .blog-author {
+            @apply font-medium text-gray-900;
           }
 
-          h3 {
-            @apply font-semibold text-base text-gray-800;
+          .blog-separator {
+            @apply text-gray-400;
           }
+
+          .blog-date {
+            @apply text-gray-500;
+          }
+
+          .blog-reading-time {
+            @apply flex items-center gap-1 text-gray-500;
+          }
+        }
+
+        .blog-title {
+          @apply mb-0;
 
           a {
-            @apply text-blue-600 text-xs hover:underline flex items-center gap-3;
+            @apply text-2xl font-bold text-gray-800 leading-tight;
+            @apply hover:text-gray-900 transition-colors;
+            font-family: var(--font-georama);
+            text-decoration: none;
+            display: block;
+          }
+        }
+
+        .blog-image-wrapper {
+          @apply flex-shrink-0 w-48 h-32 overflow-hidden rounded-md;
+          @apply bg-gray-100;
+
+          a {
+            @apply block w-full h-full;
+          }
+
+          .blog-image {
+            @apply w-full h-full object-cover;
+            @apply hover:scale-105 transition-transform duration-300;
           }
         }
       }
