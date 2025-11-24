@@ -2,7 +2,8 @@
 
 A modern, interactive portfolio website inspired by macOS, featuring draggable windows, an animated dock, and a fully functional terminal. Built with React, Vite, and GSAP animations.
 
-![Portfolio Preview](public/images/macbook.png)
+<img width="2940" height="1676" alt="image" src="https://github.com/user-attachments/assets/f0d14674-84e6-45ca-90db-01132af62ec9" />
+
 
 ## ✨ Features
 
