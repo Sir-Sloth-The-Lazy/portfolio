@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
+
 import useWindowStore from "#store/window";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -17,10 +18,10 @@ const windowWrapper = (Component, windowKey) => {
 
       if (isOpen) {
         const dockIcon = document.getElementById(`dock-icon-${windowKey}`);
-        
+
         // Default animation if icon not found
         let initialVars = { scale: 0.8, opacity: 0, y: 40 };
-        
+
         if (dockIcon) {
           const iconRect = dockIcon.getBoundingClientRect();
           const iconCenter = {
@@ -56,14 +57,23 @@ const windowWrapper = (Component, windowKey) => {
       }
     }, [isOpen]);
     useGSAP(() => {
-        const el = ref.current;
-        if (!el) return;
-        
-       const [instance] = Draggable.create(el , {
-            onPress : () => focusWindow(windowKey)
-        })
+      const el = ref.current;
+      if (!el) return;
 
-        return () => instance.kill();
+      const [instance] = Draggable.create(el, {
+        onPress: function (e) {
+          // Don't start dragging if clicking on input, textarea, or form elements
+          const target = e.target;
+          if (target.tagName === 'INPUT' ||
+            target.tagName === 'TEXTAREA' ||
+            target.closest('input, textarea, form')) {
+            return false;
+          }
+          focusWindow(windowKey);
+        }
+      })
+
+      return () => instance.kill();
     }, [])
 
     useLayoutEffect(() => {
@@ -79,9 +89,8 @@ const windowWrapper = (Component, windowKey) => {
     );
   };
 
-  Wrapped.displayName = `WindowWrapper(${
-    Component.displayName || Component.name || "Component"
-  })`;
+  Wrapped.displayName = `WindowWrapper(${Component.displayName || Component.name || "Component"
+    })`;
 
   return Wrapped;
 };
