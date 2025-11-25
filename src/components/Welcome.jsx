@@ -18,7 +18,7 @@ const setupTextHover = (container , type) => {
     if(!container) 
         return ;
     const letters = container.querySelectorAll("span");
-    const {min , max , default : base} =   FONT_WEIGHTS[type];
+    const {min , max } =   FONT_WEIGHTS[type];
 
     const animateLetter = (letter , weight , duration = 0.25) => {
         return gsap.to(letter , {
@@ -58,8 +58,7 @@ const setupTextHover = (container , type) => {
 const Welcome = () => {
     const titleRef = useRef(null)
     const subtitleRef = useRef(null)
-    const descriptionRef = useRef(null)
-    const buttonRef = useRef(null)
+
 
     useGSAP(() => {
         const cleanupTitle = setupTextHover(titleRef.current , "title")
