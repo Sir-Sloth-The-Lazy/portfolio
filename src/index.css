@@ -11,7 +11,7 @@ body {
   width: 100dvw;
   overflow: hidden;
   height: 100dvh;
-  background-image: url("images/wallpaper.png");
+  background-image: url("./assets/wallpaper.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -90,7 +90,7 @@ body {
     }
 
     .tooltip {
-      @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-blue-200 !text-blue-900 !shadow-2xl;
+      @apply py-1! px-3! w-fit! text-center! text-xs! rounded-md! bg-blue-200! text-blue-900! shadow-2xl!;
     }
 
     .dock-icon {
@@ -203,7 +203,7 @@ body {
         }
 
         .blog-image-wrapper {
-          @apply flex-shrink-0 w-48 h-32 overflow-hidden rounded-md;
+          @apply shrink-0 w-48 h-32 overflow-hidden rounded-md;
           @apply bg-gray-100;
 
           a {
