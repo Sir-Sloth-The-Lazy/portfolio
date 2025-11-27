@@ -1,6 +1,6 @@
 # CI/CD Setup Walkthrough
 
-I have set up a CI/CD pipeline using GitHub Actions to automatically build, test, and deploy your portfolio.
+I have set up a CI/CD pipeline using GitHub Actions to automatically build, test, and deploy this portfolio.
 
 ## Changes
 
@@ -16,7 +16,7 @@ Created `.github/workflows/ci-cd.yml`. This workflow has two jobs:
 Updated `vite.config.js` to set the `base` path.
 
 > [!IMPORTANT]
-> I set the base path to `/portfolio/`. If your repository name is different, you **MUST** update this value in `vite.config.js` or the site will show a blank page.
+> I  have set the base path to `/portfolio/` as it is the name of the repository. If your repository name is different, you **MUST** update this value in `vite.config.js` or the site will show a blank page.
 
 ## Next Steps for You
 
