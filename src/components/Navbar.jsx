@@ -6,7 +6,7 @@ export const Navbar = () => {
   return (
     <nav>
       <div>
-        <img src="/images/logo.svg" alt="logo" />
+        <img src="images/logo.svg" alt="logo" />
         <p className="font-bold text-sm"> Jeevant's Portfolio</p>
         <ul>
           {navLinks.map(({ id, name }) => (
@@ -20,7 +20,7 @@ export const Navbar = () => {
         <ul>
           {navIcons.map(({ id, img }) => (
             <li key={id}>
-              <img src={img} className="icon-hover" alt={"icon-${id}"}></img>
+              <img src={img} className="icon-hover" alt={`icon-${id}`}></img>
             </li>
           ))}
         </ul>
