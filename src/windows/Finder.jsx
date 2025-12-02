@@ -52,7 +52,7 @@ const Finder = () => {
         </div>
         <ul className="content">
             {activeLocation?.children.map((item) =>(
-                <li key={item.id} className={item.position} onClick={() => openItem(item)}>
+                <li key={item.id} className={clsx(item.position)} onClick={() => openItem(item)}>
                     <img src={item.icon} alt={item.name}></img>
                     <p className="text-sm font-medium truncate">{item.name}</p>
                 </li>
