@@ -15,14 +15,7 @@ const Terminal = () => {
     const terminalRef = useRef(null);
     const { openWindow } = useWindowStore();
 
-    // Generate techStack.txt content
-    const getTechStackContent = () => {
-        return techStack
-            .map(({ category, items }) => {
-                return `${category}:\n  ${items.join(", ")}`;
-            })
-            .join("\n\n");
-    };
+
 
     // Download resume.pdf
     const downloadResume = () => {
@@ -205,6 +198,7 @@ Or: open safari`;
 
     // Focus input when terminal is opened or clicked
     useEffect(() => {
+        const currentTerminal = terminalRef.current;
         const focusInput = () => {
             if (inputRef.current) {
                 inputRef.current.focus();
@@ -218,13 +212,13 @@ Or: open safari`;
             focusInput();
         };
 
-        if (terminalRef.current) {
-            terminalRef.current.addEventListener('click', handleClick);
+        if (currentTerminal) {
+            currentTerminal.addEventListener('click', handleClick);
         }
 
         return () => {
-            if (terminalRef.current) {
-                terminalRef.current.removeEventListener('click', handleClick);
+            if (currentTerminal) {
+                currentTerminal.removeEventListener('click', handleClick);
             }
         };
     }, []);
