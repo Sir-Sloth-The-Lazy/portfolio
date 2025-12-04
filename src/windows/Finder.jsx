@@ -14,6 +14,9 @@ const Finder = () => {
     if(item.fileType === "pdf") {
         return openWindow("resume")
     }
+    if(item.fileType === "txt") {
+        return openWindow("txtfile", item)
+    }
     if(item.kind === 'folder') {
         return setActiveLocation(item)
     }
