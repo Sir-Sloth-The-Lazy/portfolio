@@ -38,7 +38,7 @@ const Text = () => {
           )}
 
           <div className="space-y-4 leading-relaxed text-lg">
-            {description && description.map((paragraph, index) => (
+            {Array.isArray(description) && description.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
           </div>
