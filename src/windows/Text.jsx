@@ -17,7 +17,7 @@ const Text = () => {
         <WindowControls target="txtfile" />
         <span className="font-semibold text-sm absolute left-1/2 -translate-x-1/2">{name}</span>
       </div>
-      <div className="bg-white h-full p-8 overflow-y-auto text-gray-800">
+      <div className="bg-white flex-1 p-8 overflow-y-auto text-gray-800">
         <div className="max-w-2xl mx-auto">
           {image && (
             <div className="mb-6">

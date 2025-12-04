@@ -60,20 +60,25 @@ const windowWrapper = (Component, windowKey) => {
       const el = ref.current;
       if (!el) return;
 
-      const [instance] = Draggable.create(el, {
-        onPress: function (e) {
-          // Don't start dragging if clicking on input, textarea, or form elements
-          const target = e.target;
-          if (target.tagName === 'INPUT' ||
-            target.tagName === 'TEXTAREA' ||
-            target.closest('input, textarea, form')) {
-            return false;
-          }
-          focusWindow(windowKey);
-        }
-      })
+      const header = el.querySelector('#window-header');
+      const footer = el.querySelector('.window-footer');
+      const instances = [];
 
-      return () => instance.kill();
+      if (header) {
+        instances.push(Draggable.create(el, {
+          trigger: header,
+          onPress: () => focusWindow(windowKey)
+        })[0]);
+      }
+
+      if (footer) {
+        instances.push(Draggable.create(el, {
+          trigger: footer,
+          onPress: () => focusWindow(windowKey)
+        })[0]);
+      }
+
+      return () => instances.forEach(instance => instance.kill());
     }, [])
 
     useLayoutEffect(() => {
@@ -83,8 +88,23 @@ const windowWrapper = (Component, windowKey) => {
     }, [isOpen]);
 
     return (
-      <section id={windowKey} ref={ref} style={{ zIndex }} className="absolute">
+      <section 
+        id={windowKey} 
+        ref={ref} 
+        style={{ 
+          zIndex, 
+          resize: 'both', 
+          overflow: 'hidden',
+          minWidth: '300px',
+          minHeight: '200px',
+          display: 'flex',
+          flexDirection: 'column'
+        }} 
+        className="absolute"
+      >
         <Component {...props} />
+        {/* Drag handle at the bottom, leaving space for resize handle */}
+        <div className="window-footer absolute bottom-0 left-0 right-6 h-8 cursor-move bg-transparent z-[100]" />
       </section>
     );
   };
