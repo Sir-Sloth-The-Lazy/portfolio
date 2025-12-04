@@ -86,7 +86,15 @@ const Terminal = () => {
                 }
                 const fileToRead = args[0];
                 if (fileToRead === "techStack.txt" && files[fileToRead]) {
-                    return getTechStackContent();
+                    const description = techStack.map(
+                        (item) => `${item.category}: ${item.items.join(", ")}`
+                    );
+                    openWindow("txtfile", {
+                        name: "techStack.txt",
+                        subtitle: "My Technical Stack",
+                        description: description,
+                    });
+                    return "Opening techStack.txt...";
                 }
                 if (fileToRead === "resume.pdf" && files[fileToRead]) {
                     downloadResume();
@@ -254,7 +262,7 @@ Or: open safari`;
                     ))}
 
                     <form onSubmit={handleSubmit} className="terminal-input-form" onClick={(e) => e.stopPropagation()}>
-                        <span className="terminal-prompt">
+                        <span className="terminal-prompt whitespace-nowrap">
                             <span className="font-bold">@Jeevant'sPortfolioTerminal%</span>{" "}
                         </span>
                         <div className="terminal-input-wrapper">
