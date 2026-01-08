@@ -1,6 +1,6 @@
 import React from 'react'
 import gsap from 'gsap';
-import { Navbar, Welcome, Dock, BackgroundPaths } from '#components'
+import { Navbar, Welcome, Dock, BackgroundPaths, BackgroundLines } from '#components'
 import { Draggable } from 'gsap/Draggable'
 import { Terminal, Safari, Resume, Finder, Text } from '#windows';
 gsap.registerPlugin(Draggable);
@@ -15,15 +15,17 @@ function App() {
   return (
     <main>
       <BackgroundPaths title="Jeevant's Portfolio" />
-      <Navbar />
-      <Welcome />
-      <Dock />
+      <BackgroundLines className="w-full h-screen overflow-hidden bg-linear-to-br from-indigo-900 via-[#0a0a2e] to-black">
+        <Navbar />
+        <Welcome />
+        <Dock />
 
-      <Terminal />
-      <Safari />
-      <Resume />
-      <Finder />
-      <Text />
+        <Terminal />
+        <Safari />
+        <Resume />
+        <Finder />
+        <Text />
+      </BackgroundLines>
     </main>
   )
 }
