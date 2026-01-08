@@ -1,6 +1,6 @@
 import React from 'react'
 import gsap from 'gsap';
-import { Navbar, Welcome, Dock } from '#components'
+import { Navbar, Welcome, Dock, BackgroundPaths } from '#components'
 import { Draggable } from 'gsap/Draggable'
 import { Terminal, Safari, Resume, Finder, Text } from '#windows';
 gsap.registerPlugin(Draggable);
@@ -14,6 +14,7 @@ gsap.registerPlugin(Draggable);
 function App() {
   return (
     <main>
+      <BackgroundPaths title="Jeevant's Portfolio" />
       <Navbar />
       <Welcome />
       <Dock />

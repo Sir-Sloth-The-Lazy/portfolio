@@ -16,7 +16,8 @@ export default defineConfig({
       '#constants' : resolve(__dirname , "src/constants"),
       '#store' : resolve (__dirname , "src/store"),
       '#hoc' : resolve(__dirname , "src/hoc" ) ,
-      '#windows' : resolve(__dirname , "src/windows" )
+      '#windows' : resolve(__dirname , "src/windows" ),
+      '#lib' : resolve(__dirname , "src/lib")
     }
   }
 })
