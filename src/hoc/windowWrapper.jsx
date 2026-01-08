@@ -101,10 +101,11 @@ const windowWrapper = (Component, windowKey) => {
           flexDirection: 'column'
         }} 
         className="absolute"
+        onMouseDown={() => focusWindow(windowKey)}
       >
         <Component {...props} />
         {/* Drag handle at the bottom, leaving space for resize handle */}
-        <div className="window-footer absolute bottom-0 left-0 right-6 h-8 cursor-move bg-transparent z-[100]" />
+        <div className="window-footer absolute bottom-0 left-0 right-6 h-8 cursor-move bg-transparent z-100" />
       </section>
     );
   };
