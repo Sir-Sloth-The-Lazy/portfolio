@@ -61,33 +61,33 @@ const Welcome = () => {
 
 
     useGSAP(() => {
-        const cleanupTitle = setupTextHover(titleRef.current , "title")
-        const cleanupSubtitle = setupTextHover(subtitleRef.current , "subtitle")
+        const cleanupTitle = setupTextHover(titleRef.current, "title")
+        const cleanupSubtitle = setupTextHover(subtitleRef.current, "subtitle")
 
         return () => {
-            if(cleanupTitle) cleanupTitle()
-            if(cleanupSubtitle) cleanupSubtitle()
+            if (cleanupTitle) cleanupTitle()
+            if (cleanupSubtitle) cleanupSubtitle()
         }
-    } , []) ;
-  return (
-    <section id="welcome">
-        <p ref={subtitleRef}> 
-            {renderText("Hola Amigo, I'm Jeevant ! Welcome to my" ,
-            "text-3xl font-georama",
-            100
-            )} 
+    }, []);
+    return (
+        <section id="welcome" className="z-20">
+            <p ref={subtitleRef} className="text-center">
+                {renderText("Hola Amigo, I'm Jeevant ! Welcome to my",
+                    "text-xl md:text-3xl font-sans text-white/90",
+                    100
+                )}
             </p>
-        
-        <h1 ref={titleRef} className="mt-7">
-             {renderText(
-                "portfolio",
-                "text-9xl italic font-georama",
-                 )} </h1>
-        <div className="small-screen">
-            <p> This website can be best experienced on a desktop/tablet </p>
-        </div>
-    </section>
-  )
+
+            <h1 ref={titleRef} className="mt-4 text-center">
+                {renderText(
+                    "portfolio",
+                    "text-6xl md:text-8xl lg:text-9xl italic font-sans text-white",
+                )} </h1>
+            <div className="small-screen">
+                <p> This website can be best experienced on a desktop/tablet </p>
+            </div>
+        </section>
+    )
 }
 
 export default Welcome ;
