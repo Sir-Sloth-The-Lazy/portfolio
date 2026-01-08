@@ -120,6 +120,7 @@ const windowWrapper = (Component, windowKey) => {
           flexDirection: 'column'
         }} 
         className="absolute"
+        onMouseDown={() => focusWindow(windowKey)}
       >
         <Component {...props} />
         {/* Drag handle at the bottom, leaving space for resize handle */}
