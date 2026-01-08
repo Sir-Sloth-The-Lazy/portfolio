@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "#lib/utils";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
 import React from "react";
 
@@ -99,8 +100,8 @@ const SVG = ({
             ease: "linear",
             repeat: Infinity,
             repeatType: "loop",
-            delay: Math.floor(Math.random() * 10),
-            repeatDelay: Math.floor(Math.random() * 10 + 2),
+            delay: (idx * 2) % 10,
+            repeatDelay: ((idx * 3) % 10) + 2,
           }}
           key={`path-first-${idx}`} />
       ))}
@@ -119,8 +120,8 @@ const SVG = ({
             ease: "linear",
             repeat: Infinity,
             repeatType: "loop",
-            delay: Math.floor(Math.random() * 10),
-            repeatDelay: Math.floor(Math.random() * 10 + 2),
+            delay: (idx * 2.5) % 10,
+            repeatDelay: ((idx * 3.5) % 10) + 2,
           }}
           key={`path-second-${idx}`} />
       ))}
