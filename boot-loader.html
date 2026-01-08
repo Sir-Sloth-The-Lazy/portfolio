@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>macOS Boot Transition</title>
+    <style>
+        :root {
+            --mac-black: #000000;
+            --mac-gray: #333333;
+            --mac-white: #ffffff;
+            --status-text: #86868b;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #121212; /* Represents your main site background */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* --- LOADING SCREEN OVERLAY --- */
+        #boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--mac-black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            /* The Antigravity Transition: Heavy, premium lift */
+            transition: transform 1.2s cubic-bezier(0.8, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        /* Triggered via JS when loaded */
+        #boot-screen.lift-up {
+            transform: translateY(-100%);
+        }
+
+        .boot-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        /* Logo Styling */
+        .boot-logo {
+            width: 80px;
+            margin-bottom: 50px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+        }
+
+        /* Progress Bar Track */
+        .progress-track {
+            width: 220px;
+            height: 6px;
+            background-color: var(--mac-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Progress Bar Fill */
+        #progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background-color: var(--mac-white);
+            border-radius: 10px;
+            transition: width 0.4s ease-out; /* Smooth fill jumps */
+        }
+
+        /* Status Text Messaging */
+        #status-text {
+            margin-top: 20px;
+            font-family: "SF Mono", "ui-monospace", "Monaco", "Consolas", monospace;
+            font-size: 11px;
+            color: var(--status-text);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            height: 1.2em; /* Prevents layout jitter */
+            text-align: center;
+        }
+
+        /* --- PLACEHOLDER CONTENT (Your Site) --- */
+        .main-content {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            background: linear-gradient(135deg, #1e1e1e 0%, #000 100%);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- macOS Boot Overlay -->
+    <div id="boot-screen">
+        <div class="boot-content">
+            <!-- Simulated White Apple Logo -->
+            <svg class="boot-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M60 0C26.8629 0 0 26.8629 0 60C0 93.1371 26.8629 120 60 120C93.1371 120 120 93.1371 120 60C120 26.8629 93.1371 0 60 0ZM60 10C87.6142 10 110 32.3858 110 60C110 87.6142 87.6142 110 60 110C32.3858 110 10 87.6142 10 60C10 32.3858 32.3858 10 60 10Z" fill="white" fill-opacity="0.1"/>
+                <path d="M60 25L70 50H50L60 25Z" fill="white"/> <!-- Minimal Placeholder Triangle -->
+                <circle cx="60" cy="70" r="15" fill="white" fill-opacity="0.9" />
+            </svg>
+
+            <div class="progress-track">
+                <div id="progress-fill"></div>
+            </div>
+
+            <div id="status-text">Initializing system...</div>
+        </div>
+    </div>
+
+    <!-- Main Website Revealed Underneath -->
+    <div class="main-content">
+        <div>
+            <h1 style="font-size: 3rem; font-weight: 200;">Welcome to My Portfolio</h1>
+            <p style="color: #888;">The system is fully operational.</p>
+        </div>
+    </div>
+
+    <script>
+        const progressFill = document.getElementById('progress-fill');
+        const statusText = document.getElementById('status-text');
+        const bootScreen = document.getElementById('boot-screen');
+
+        const systemMessages = [
+            "Initializing kernel...",
+            "Loading Python environments...",
+            "Compiling Neural Networks...",
+            "Optimizing React components...",
+            "Fetching GitHub repositories...",
+            "System Ready."
+        ];
+
+        let currentProgress = 0;
+        let messageIndex = 0;
+
+        function updateLoading() {
+            // Randomly increment progress to simulate real processing spikes
+            const increment = Math.floor(Math.random() * 12) + 2; 
+            currentProgress += increment;
+
+            if (currentProgress >= 100) {
+                currentProgress = 100;
+            }
+
+            // Sync visual bar
+            progressFill.style.width = currentProgress + "%";
+
+            // Sync messages based on progress thresholds
+            const threshold = 100 / (systemMessages.length - 1);
+            const calculatedIndex = Math.min(
+                Math.floor(currentProgress / threshold), 
+                systemMessages.length - 1
+            );
+
+            if (calculatedIndex !== messageIndex) {
+                messageIndex = calculatedIndex;
+                statusText.innerText = systemMessages[messageIndex];
+            }
+
+            if (currentProgress < 100) {
+                // Random delays (100ms - 600ms) to create "jittery" real loading feel
+                const nextDelay = Math.random() * 500 + 100;
+                setTimeout(updateLoading, nextDelay);
+            } else {
+                // Sequence finished
+                completeBoot();
+            }
+        }
+
+        function completeBoot() {
+            // Brief wait for the "System Ready" message to be readable
+            setTimeout(() => {
+                bootScreen.classList.add('lift-up');
+            }, 600);
+            
+            // Cleanup: remove from DOM after transition to save resources
+            setTimeout(() => {
+                bootScreen.style.display = 'none';
+            }, 2000); 
+        }
+
+        // Start process on window load
+        window.addEventListener('load', () => {
+            // Small initial delay so the user catches the start of the sequence
+            setTimeout(updateLoading, 400);
+        });
+    </script>
+</body>
+</html>
