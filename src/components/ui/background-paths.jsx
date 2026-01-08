@@ -20,8 +20,8 @@ function FloatingPaths({ position }) {
     }));
 
     const pathDurations = React.useMemo(() => 
-        paths.map(() => 10 + Math.random() * 10),
-        []
+        paths.map((_, i) => 10 + ((i * 7) % 11)),
+        [paths]
     );
 
     return (
