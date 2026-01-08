@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Button } from "#components/ui/button";
 
@@ -18,6 +19,11 @@ function FloatingPaths({ position }) {
         width: 0.5 + i * 0.03,
     }));
 
+    const pathDurations = React.useMemo(() => 
+        paths.map(() => 10 + Math.random() * 10),
+        []
+    );
+
     return (
         <div className="absolute inset-0 pointer-events-none">
             <svg
@@ -26,7 +32,7 @@ function FloatingPaths({ position }) {
                 fill="none"
             >
                 <title>Background Paths</title>
-                {paths.map((path) => (
+                {paths.map((path, index) => (
                     <motion.path
                         key={path.id}
                         d={path.d}
@@ -40,7 +46,7 @@ function FloatingPaths({ position }) {
                             pathOffset: [0, 1],
                         }}
                         transition={{
-                            duration: 10 + Math.random() * 10,
+                            duration: pathDurations[index],
                             repeat: Number.POSITIVE_INFINITY,
                             ease: "linear",
                         }}
@@ -111,7 +117,7 @@ export function BackgroundPaths({ title = "Background Paths" }) {
         timeoutId = setTimeout(updateLoading, 800);
 
         return () => clearTimeout(timeoutId);
-    }, [currentProgress]);
+    }, [currentProgress, systemMessages.length]);
 
     const handleDiscover = () => {
         setIsLifted(true);
