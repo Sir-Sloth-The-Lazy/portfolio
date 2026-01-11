@@ -5,6 +5,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 
+gsap.registerPlugin(Draggable);
+
 const windowWrapper = (Component, windowKey) => {
   const Wrapped = (props) => {
     const { focusWindow, windows } = useWindowStore();
@@ -60,28 +62,24 @@ const windowWrapper = (Component, windowKey) => {
       const el = ref.current;
       if (!el) return;
 
-      const header = el.querySelector('#window-header');
-      const footer = el.querySelector('.window-footer');
       const instances = [];
 
-      if (header) {
-        instances.push(Draggable.create(el, {
-          trigger: header,
-          onPress: () => focusWindow(windowKey)
-        })[0]);
-      }
+      // Make the entire window draggable
+      instances.push(Draggable.create(el, {
+        bounds: "body",
+        onPress: () => focusWindow(windowKey),
+        dragClickables: false,
+        allowContextMenu: true,
+        // Cancel drag on the content areas to allow native scrolling
+        cancel: ".safari-content, .terminal-container, .gallery, .sidebar, .content, input, textarea, button, a, img, h1, h2, h3, h4, p, span"
+      })[0]);
 
-      if (footer) {
-        instances.push(Draggable.create(el, {
-          trigger: footer,
-          onPress: () => focusWindow(windowKey)
-        })[0]);
-      }
-
-      return () => instances.forEach(instance => instance.kill());
-    }, [])
-
-    useLayoutEffect(() => {
+      return () => {
+        instances.forEach(instance => instance.kill());
+      };
+    }, [isOpen])
+ 
+     useLayoutEffect(() => {
       const el = ref.current;
       if (!el) return;
       el.style.display = isOpen ? "block" : "none";

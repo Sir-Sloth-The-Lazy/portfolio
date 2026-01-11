@@ -1,3 +1,8 @@
+import linkedinLogo from "../assets/LI-In-Bug.png";
+import codeforcesLogo from "../assets/codeforces.png";
+import leetcodeLogo from "../assets/leetcode.png";
+import twitterLogo from "../assets/logo-black.png";
+
 const navLinks = [
   {
     id: 1,
@@ -89,6 +94,13 @@ const blogPosts = [
     image: "images/blog2.webp",
     link: "https://medium.com/@jeevantprakharsingh2004/introduction-to-ai-and-ml-a-beginners-guide-0acd792a863a",
   },
+  {
+    id: 3,
+    date: "Dec 2025",
+    title: "The Future of Web Development with Next.js 15",
+    image: "images/blog3.png",
+    link: "https://medium.com/@jeevantprakharsingh2004",
+  },
 ];
 
 const techStack = [
@@ -121,31 +133,45 @@ const techStack = [
 const socials = [
   {
     id: 1,
-    text: "Github",
-    icon: "icons/github.svg",
-    bg: "#f4656b",
+    text: "GitHub",
+    icon: "https://cdn.simpleicons.org/github/000000",
+    bg: "#181717",
     link: "https://github.com/Sir-Sloth-The-Lazy",
   },
   {
     id: 2,
-    text: "Platform",
-    icon: "icons/atom.svg",
-    bg: "#4bcb63",
+    text: "LeetCode",
+    icon: leetcodeLogo,
+    bg: "#FFA116",
     link: "https://leetcode.com/u/Sir_Sloth_The_Lazy/",
   },
   {
     id: 3,
-    text: "Twitter/X",
-    icon: "icons/twitter.svg",
-    bg: "#ff866b",
+    text: "Twitter",
+    icon: twitterLogo,
+    bg: "#1DA1F2",
     link: "https://x.com/JeevantSin61236",
   },
   {
     id: 4,
     text: "LinkedIn",
-    icon: "icons/linkedin.svg",
-    bg: "#05b6f6",
+    icon: linkedinLogo,
+    bg: "#0A66C2",
     link: "https://www.linkedin.com/in/jeevantpsingh",
+  },
+  {
+    id: 5,
+    text: "Codeforces",
+    icon: codeforcesLogo,
+    bg: "#1F8ACB",
+    link: "https://codeforces.com/profile/Sir_Sloth_The_Lazy",
+  },
+  {
+    id: 6,
+    text: "Medium",
+    icon: "https://cdn.simpleicons.org/medium/000000",
+    bg: "#000000",
+    link: "https://medium.com/@jeevantprakharsingh2004",
   },
 ];
 
