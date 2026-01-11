@@ -28,7 +28,7 @@
 
 ## ✨ Features
 
-Experience a web-based operating system built for the modern web.
+Experience a web-based Mac operating system built for the modern web. 
 
 ### 🖥️ Desktop Environment
 
