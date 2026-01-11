@@ -62,24 +62,47 @@ const windowWrapper = (Component, windowKey) => {
       const el = ref.current;
       if (!el) return;
 
-      const instances = [];
+      const [instance] = Draggable.create(el, {
+        allowEventDefault: true,
+        onPress: function (e) {
+          const target = e.target;
+          
+          // 1. Check for Resize Handle (Bottom Right Corner)
+          // If clicking the element itself (not a child), check coordinates
+          if (target === el) {
+             const rect = el.getBoundingClientRect();
+             const isResize = (e.clientX > rect.right - 20) && (e.clientY > rect.bottom - 20);
+             if (isResize) return false; // Let browser handle resize
+          }
 
-      // Make the entire window draggable
-      instances.push(Draggable.create(el, {
-        bounds: "body",
-        onPress: () => focusWindow(windowKey),
-        dragClickables: false,
-        allowContextMenu: true,
-        // Cancel drag on the content areas to allow native scrolling
-        cancel: ".safari-content, .terminal-container, .gallery, .sidebar, .content, input, textarea, button, a, img, h1, h2, h3, h4, p, span"
-      })[0]);
+          // 2. Check for Input/Form elements (always allow interaction)
+          if (target.tagName === 'INPUT' ||
+            target.tagName === 'TEXTAREA' ||
+            target.closest('input, textarea, form, button, a')) {
+            return false;
+          }
 
-      return () => {
-        instances.forEach(instance => instance.kill());
-      };
+          // 3. Check for Header or Footer
+          const header = el.querySelector('#window-header');
+          const footer = el.querySelector('.window-footer');
+          
+          const isHeader = header && (header === target || header.contains(target));
+          const isFooter = footer && (footer === target || footer.contains(target));
+
+          if (isHeader || isFooter) {
+             focusWindow(windowKey);
+             return true; // Start Drag
+          }
+
+          // 4. Otherwise (Content), allow interaction
+          return false;
+        }
+      });
+
+      return () => instance.kill();
     }, [isOpen])
- 
-     useLayoutEffect(() => {
+
+    useLayoutEffect(() => {
       const el = ref.current;
       if (!el) return;
       el.style.display = isOpen ? "block" : "none";
@@ -103,7 +126,7 @@ const windowWrapper = (Component, windowKey) => {
       >
         <Component {...props} />
         {/* Drag handle at the bottom, leaving space for resize handle */}
-        <div className="window-footer absolute bottom-0 left-0 right-6 h-8 cursor-move bg-transparent z-100" />
+        <div className="window-footer absolute bottom-0 left-0 right-6 h-8 cursor-move bg-transparent" style={{ zIndex: 100 }} />
       </section>
     );
   };
