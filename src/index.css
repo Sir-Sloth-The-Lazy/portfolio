@@ -130,95 +130,150 @@ body {
   }
 
   #safari {
-    @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-5xl h-[700px] absolute top-20 left-1/12 bg-white/90 shadow-2xl drop-shadow-2xl rounded-2xl overflow-hidden flex flex-col;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
 
-    .search {
-      @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-2;
-
-      input {
-        @apply placeholder:text-gray-400;
-      }
+    .search-container {
+      @apply flex items-center justify-center;
     }
 
-    .blog-medium {
-      @apply bg-white overflow-y-auto flex-1;
+    .search {
+      @apply w-full bg-gray-200/50 border border-transparent rounded-lg px-4 py-1 text-center text-[13px] text-gray-700 outline-none focus:bg-white focus:border-blue-400 focus:shadow-sm transition-all;
+    }
 
-      .blog-header {
-        @apply px-12 pt-12 pb-8 border-b border-gray-100;
+    .safari-content {
+      @apply flex-1 overflow-y-auto flex flex-col items-center pt-24 px-10 pb-20;
+      background: linear-gradient(to bottom, #f9f9fb 0%, #edeff3 100%);
+      min-height: 0;
+      height: 100%;
+      position: relative;
+      z-index: 10;
 
-        h1 {
-          @apply text-4xl font-bold text-gray-900 mb-2;
-          font-family: var(--font-georama);
+      .safari-favorites-section {
+        @apply w-full max-w-4xl;
+
+        .section-title {
+          @apply text-[15px] font-semibold text-gray-900 mb-5 pl-1;
+          letter-spacing: -0.01em;
         }
 
-        .blog-subtitle {
-          @apply text-base text-gray-600;
-          font-family: var(--font-georama);
+        .favorites-grid {
+          @apply grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 gap-x-12 gap-y-10;
+        }
+
+        .favorite-item {
+          @apply flex flex-col items-center gap-1.5 transition-transform duration-200;
+          width: 64px;
+          text-decoration: none;
+
+          &:hover .favorite-icon-wrapper {
+            @apply shadow-xl scale-[1.02];
+          }
+        }
+
+        .favorite-icon-wrapper {
+          @apply size-16 rounded-[1.25rem] flex items-center justify-center shadow-xs overflow-hidden bg-white/80 backdrop-blur-sm transition-all duration-200;
+          border: 0.5px solid rgba(0, 0, 0, 0.05);
+
+          .favorite-icon {
+            @apply size-10 object-contain;
+          }
+        }
+
+        .favorite-label {
+          @apply text-[11px] font-medium text-gray-800 text-center truncate w-full px-0.5;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
       }
 
-      .blog-posts-container {
-        @apply px-12 py-8 space-y-8;
+      .safari-privacy-section {
+        @apply w-full max-w-4xl mt-12;
+        
+        .privacy-card {
+          @apply flex gap-6 bg-white/40 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-xl;
+          
+          .privacy-card-info {
+             @apply flex flex-col items-center justify-center text-center w-1/3 border-r border-black/5 pr-6;
+             
+             .privacy-shield-container {
+               @apply relative mb-4 flex items-center justify-center;
+               .shield-vignette {
+                 @apply absolute inset-0 bg-green-400/30 blur-2xl rounded-full scale-110;
+               }
+             }
+             
+             .privacy-desc {
+               @apply text-[13px] text-gray-800 font-semibold leading-relaxed mb-4 px-2;
+             }
+             
+             .privacy-show-more {
+               @apply text-blue-500 text-xs font-semibold hover:underline cursor-pointer;
+             }
+          }
+          
+          .privacy-card-stats {
+             @apply grid grid-cols-2 gap-4 flex-1 pl-6;
+             
+             .stat-box {
+               @apply bg-white/50 rounded-xl p-5 flex flex-col justify-center border border-black/5;
+               
+               .stat-label {
+                 @apply text-xs text-black/50 font-medium mb-1;
+               }
+               
+               .stat-number {
+                 @apply text-3xl font-bold text-gray-900;
+               }
+               
+               .stat-text {
+                 @apply text-sm text-gray-800 font-bold leading-tight;
+               }
+               
+               &.wide {
+                 @apply col-span-2;
+               }
+             }
+          }
+        }
       }
 
-      .blog-card {
-        @apply flex items-center gap-8 pb-8 border-b border-gray-100 last:border-b-0;
-        @apply hover:opacity-90 transition-opacity cursor-pointer;
+      .safari-reading-list-section {
+        @apply w-full max-w-4xl mt-12 mb-12;
 
-        &:hover {
-          .blog-title a {
-            @apply text-gray-900;
-          }
+        .reading-list-grid {
+          @apply grid grid-cols-1 md:grid-cols-2 gap-6;
         }
 
-        .blog-card-content {
-          @apply flex-1 min-w-0;
-        }
+        .reading-list-item {
+          @apply flex gap-4 bg-white/40 backdrop-blur-xl rounded-2xl p-4 border border-white/20 shadow-lg transition-all duration-300;
+          @apply hover:bg-white/60 hover:shadow-2xl hover:scale-[1.01];
+          text-decoration: none;
 
-        .blog-meta {
-          @apply flex items-center gap-2 text-sm text-gray-500 mb-3;
-          font-family: var(--font-georama);
+          .post-image-wrapper {
+            @apply size-20 rounded-xl overflow-hidden flex-none shadow-sm;
+            border: 1px solid rgba(0, 0, 0, 0.05);
 
-          .blog-author {
-            @apply font-medium text-gray-900;
+            .post-image {
+              @apply size-full object-cover;
+            }
           }
 
-          .blog-separator {
-            @apply text-gray-400;
-          }
+          .post-info {
+            @apply flex flex-col justify-center gap-1 overflow-hidden;
 
-          .blog-date {
-            @apply text-gray-500;
-          }
+            .post-title {
+              @apply text-[13px] font-bold text-gray-900 leading-tight truncate;
+              letter-spacing: -0.01em;
+            }
 
-          .blog-reading-time {
-            @apply flex items-center gap-1 text-gray-500;
-          }
-        }
+            .post-excerpt {
+              @apply text-[11px] text-gray-600 leading-normal line-clamp-2;
+            }
 
-        .blog-title {
-          @apply mb-0;
-
-          a {
-            @apply text-2xl font-bold text-gray-800 leading-tight;
-            @apply hover:text-gray-900 transition-colors;
-            font-family: var(--font-georama);
-            text-decoration: none;
-            display: block;
-          }
-        }
-
-        .blog-image-wrapper {
-          @apply shrink-0 w-48 h-32 overflow-hidden rounded-md;
-          @apply bg-gray-100;
-
-          a {
-            @apply block w-full h-full;
-          }
-
-          .blog-image {
-            @apply w-full h-full object-cover;
-            @apply hover:scale-105 transition-transform duration-300;
+            .post-domain {
+              @apply text-[10px] text-gray-400 font-medium;
+            }
           }
         }
       }
