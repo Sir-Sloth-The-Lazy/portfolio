@@ -2,6 +2,7 @@ import WindowControls from "#components/windowControls";
 import { ChevronLeft, ChevronRight, Home, ShieldHalf, PanelLeft, Share, Plus, Copy, RefreshCcw, ShieldCheck } from "lucide-react";
 import windowWrapper from "#hoc/windowWrapper";
 import { socials, blogPosts } from "#constants";
+import safariBg from "../assets/background.jpeg";
 
 const Safari = () => {
     return <>
@@ -30,7 +31,7 @@ const Safari = () => {
             </div>
         </div>
 
-        <div className="safari-content">
+        <div className="safari-content" style={{ backgroundImage: `url(${safariBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="safari-favorites-section">
                 <h2 className="section-title">Favourites</h2>
                 <div className="favorites-grid">
